@@ -6,9 +6,17 @@ const app = express();
 
 app.use(cors());
 
-app.get('/:name',(req,res) =>{
+app.get('/',(req,res) =>{
     res.type('.html');
     res.send(`<h1>Ola,${req.params.name}`);
+});
+
+app.get('/user',(req,res) =>{
+    res.type('.html');
+    if(req.query.name && req.query.age){
+        const {name,age} = req.query;
+        res.send(`<h1>Ola,${name} - ${age}</h1>`);
+    }
 });
 
 
